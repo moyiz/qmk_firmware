@@ -1,0 +1,9 @@
+{
+    "keyboard_name": "Void-S (moyiz)",
+    "maintainer": "moyiz",
+    "usb": {
+        "vid": "0xDEAD",
+        "pid": "0x0666",
+        "device_version": "0.0.1"
+    }
+}
