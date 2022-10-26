@@ -1,13 +1,16 @@
 /*
 Copyright 2022 @moyiz
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
 (at your option) any later version.
+
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
+
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -20,12 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define USE_I2C
 #define USE_SERIAL
 
-/* key matrix size */
-// Rows are doubled-up
 #define MATRIX_ROWS 8
 #define MATRIX_COLS 7
 
-// wiring of each half
 #define MATRIX_COL_PINS \
     { B8, B4, B9, A15, B0, A3, A0 }
 #define MATRIX_ROW_PINS \
@@ -54,8 +54,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define ENCODERS_PAD_B { B12 }
 // #define ENCODER_RESOLUTION 2
 
-#define TAPPING_TERM 200
-
 // #define I2C_DRIVER I2CD1
 // #define I2C_SCL_PIN B10
 // #define I2C_SDA_PIN B1
@@ -79,3 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WS2812_PWM_PAL_MODE 1
 #define WS2812_DMA_STREAM STM32_DMA2_STREAM5
 #define WS2812_DMA_CHANNEL 6
+
+#define COMBO_ONLY_FROM_LAYER 0
+#define COMBO_MUST_HOLD_MODS
+#define COMBO_TERM 20
