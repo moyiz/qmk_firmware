@@ -9,6 +9,8 @@ NKRO_ENABLE = yes           # Enable N-Key Rollover
 SPLIT_KEYBOARD = yes
 KEYBOARD_SHARED_EP = yes
 COMBO_ENABLE = yes
+SWAP_HANDS_ENABLE = yes
+CAPS_WORD_ENABLE = yes
 
 # EEPROM_DRIVER = i2c
 SERIAL_DRIVER = usart
