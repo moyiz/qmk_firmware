@@ -81,3 +81,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_ONLY_FROM_LAYER 0
 #define COMBO_MUST_HOLD_MODS
 #define COMBO_TERM 20
+
+#define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TIMEOUT 5000
+
+#define TAPPING_TOGGLE 2
+#define CAPS_WORD_IDLE_TIMEOUT 3000
