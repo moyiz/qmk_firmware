@@ -47,6 +47,7 @@ enum layers {
   _SY, // Symbols
   _NV, // Navigation
   _MS, // Mouse
+  _MD, // Media
   _WM, // Window Manager
   _SS, // System
 };
