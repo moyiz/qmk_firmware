@@ -43,6 +43,7 @@ enum layers {
   _IS, // ISRT
   _MT, // MTGAP
   _AP, // APTv3
+  _LM, // Layer Manager
   _NM, // Numbers
   _SY, // Symbols
   _NV, // Navigation
