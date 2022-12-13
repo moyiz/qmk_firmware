@@ -1,5 +1,6 @@
 {
     "keyboard_name": "Void-S (moyiz)",
+    "manufacturer": "moyiz",
     "maintainer": "moyiz",
     "usb": {
         "vid": "0xDEAD",

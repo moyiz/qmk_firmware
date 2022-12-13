@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   _IS, // ISRT
 //   _MT, // MTGAP
 //   _AP, // APTv3
+//   _LM, // Layer Manager
 //   _NM, // Numbers
 //   _SY, // Symbols
 //   _NV, // Navigation
@@ -109,6 +110,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_W,    KC_G,    KC_D,    KC_F,    KC_B,                      KC_Q,    KC_L,    KC_U,    KC_O,    KC_Y,    _______, \
         _______, KC_R,    KC_S,    KC_T,    KC_H,    KC_K,                      KC_J,    KC_N,    KC_E,    KC_A,    KC_I,    KC_SCLN, \
         _______, KC_X,    KC_C,    KC_M,    KC_P,    KC_V,    _______, _______, KC_Z,    KC_COMM, KC_DOT,  KC_QUOT, KC_SLSH, _______, \
+                                   _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
+    [_LM] = LAYOUT(
+        _______, TO(_SS), TO(_MS), _______, _______, _______,                   _______, _______, _______, TO(_MS), TO(_SS), _______, \
+        _______, TO(_MD), TO(_NV), TO(_SY), TO(_NM), _______,                   _______, TO(_NM), TO(_SY), TO(_NV), TO(_MD), _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
 

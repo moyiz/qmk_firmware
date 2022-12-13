@@ -1,4 +1,5 @@
 #include "void.h"
+
 enum combos {
     COMBO_1,
     COMBO_2,
@@ -47,7 +48,7 @@ const uint16_t PROGMEM kc_q_w_e_r[]    = {KC_Q, KC_W, KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM kc_u_i_o_p[]    = {KC_U, KC_I, KC_O, KC_P, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    [COMBO_1]  = COMBO(kc_w_e, KC_GESC),
+    [COMBO_1]  = COMBO(kc_w_e, QK_GESC),
     [COMBO_2]  = COMBO(kc_i_o, KC_BSPC),
     [COMBO_3]  = COMBO(kc_q_p, QK_BOOT),
     [COMBO_4]  = COMBO(tt_sy_nm, OSL(_SS)),
