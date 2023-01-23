@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * '--------------------------------------------------------------------------------------------------------------------------------------'
    */
   [_QWE] = LAYOUT_ortho_5x15(
-    KC_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_DEL,  KC_6,     KC_7,     KC_8,    KC_9,    KC_0,    KC_BSPC, \
+    QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_DEL,  KC_6,     KC_7,     KC_8,    KC_9,    KC_0,    KC_BSPC, \
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_END,  KC_PGDN, KC_BSLS, KC_Y,     KC_U,     KC_I,    KC_O,    KC_P,    KC_ENT,  \
     KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LBRC, KC_EQL,  KC_RBRC, KC_H,     KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV,  KC_UP,   KC_MINS, KC_N,     KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
@@ -146,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * '-----------------------------------------------------------------------------------------'-------------------------------------------'
    */
   [_FN1] = LAYOUT_ortho_5x15(
-      KC_GRV,  _______, _______, _______, KC_PSCR, _______, KC_NLCK, KC_PSLS, KC_PAST, KC_PMNS, _______, _______, KC_MINS, KC_EQL,  KC_DEL,
+      KC_GRV,  _______, _______, _______, KC_PSCR, _______, _______, KC_PSLS, KC_PAST, KC_PMNS, _______, _______, KC_MINS, KC_EQL,  KC_DEL,
       _______, _______, _______, _______, _______, _______, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, _______, _______, KC_LBRC, KC_RBRC, KC_HOME,
       MO(_FN2),_______, _______, _______, _______, _______, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, _______, _______, _______, KC_BSLS, KC_END,
       _______, _______, _______, _______, _______, _______, KC_P1,   KC_P2,   KC_P3,   KC_PENT, _______, _______, _______, _______, KC_PGUP,
@@ -167,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * '-----------------------------------------------------------------------------------------'-------------------------------------------'
    */
   [_FN2] = LAYOUT_ortho_5x15(
-      KC_MUTE, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  KC_F12,  RESET,  KC_F6,    KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+      KC_MUTE, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  KC_F12,  QK_BOOT, KC_F6,    KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
       _______, TO(_QWE),_______, TO(_ENG),_______, _______, RGB_RMOD,RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_BRID, KC_BRIU, _______,
       _______, TO(_APT),TO(_ISR),_______, _______, TO(_MTG),KC_VOLD, KC_MUTE, KC_VOLU, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______,
       _______, _______, _______, _______, _______, _______, KC_MRWD, KC_MPLY, KC_MFFD, _______, _______, _______, _______, _______, _______,
@@ -196,6 +196,9 @@ enum combos {
   COMBO_18,
   COMBO_19,
   COMBO_20,
+  COMBO_21,
+  COMBO_22,
+  COMBO_23,
   COMBO_COUNT,
 };
 
@@ -221,9 +224,12 @@ const uint16_t PROGMEM kc_scln_j[] = { KC_SCLN, KC_J, COMBO_END};
 const uint16_t PROGMEM kc_i_o[] = { KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM kc_i_o_j[] = { KC_I, KC_O, KC_J, COMBO_END};
 const uint16_t PROGMEM kc_scln_w_o[] = { KC_SCLN, KC_W, KC_O, COMBO_END};
+const uint16_t PROGMEM kc_m_comma[] = { KC_M, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM kc_m_dot[] = { KC_M, KC_DOT, COMBO_END};
+const uint16_t PROGMEM kc_m_k[] = { KC_M, KC_K, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-  [COMBO_1] = COMBO(kc_a_w, KC_GESC),
+  [COMBO_1] = COMBO(kc_a_w, QK_GESC),
   [COMBO_2] = COMBO(kc_scln_p, KC_BSPC),
   [COMBO_3] = COMBO(kc_a_s, OSM(MOD_LALT)),
   [COMBO_4] = COMBO(kc_s_d, OSM(MOD_LGUI)),
@@ -243,5 +249,7 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMBO_18] = COMBO(kc_i_o, OSM(MOD_RSFT)),
   [COMBO_19] = COMBO(kc_i_o_j, OSM(MOD_RCTL|MOD_RSFT)),
   [COMBO_20] = COMBO(kc_scln_w_o, OSM(MOD_RALT|MOD_RSFT)),
+  [COMBO_21] = COMBO(kc_m_comma, KC_MINUS),
+  [COMBO_22] = COMBO(kc_m_dot, KC_UNDS),
+  [COMBO_23] = COMBO(kc_m_k, KC_BSLS),
 };
-
