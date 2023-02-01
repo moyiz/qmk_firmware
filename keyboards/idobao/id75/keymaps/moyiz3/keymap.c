@@ -175,6 +175,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
+
 enum combos {
   COMBO_1,
   COMBO_2,
@@ -199,13 +200,16 @@ enum combos {
   COMBO_21,
   COMBO_22,
   COMBO_23,
+  COMBO_24,
+  COMBO_25,
+  COMBO_26,
   COMBO_COUNT,
 };
 
 const uint16_t COMBO_LEN = COMBO_COUNT;
 
-const uint16_t PROGMEM kc_a_w[] = { KC_A, KC_W, COMBO_END};
-const uint16_t PROGMEM kc_scln_p[] = { KC_SCLN, KC_P, COMBO_END};
+const uint16_t PROGMEM kc_q_w[] = { KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM kc_o_p[] = { KC_O, KC_P, COMBO_END};
 const uint16_t PROGMEM kc_a_s[] = { KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM kc_s_d[] = { KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM kc_d_f[] = { KC_D, KC_F, COMBO_END};
@@ -225,12 +229,15 @@ const uint16_t PROGMEM kc_i_o[] = { KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM kc_i_o_j[] = { KC_I, KC_O, KC_J, COMBO_END};
 const uint16_t PROGMEM kc_scln_w_o[] = { KC_SCLN, KC_W, KC_O, COMBO_END};
 const uint16_t PROGMEM kc_m_comma[] = { KC_M, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM kc_m_dot[] = { KC_M, KC_DOT, COMBO_END};
+const uint16_t PROGMEM kc_comma_dot[] = { KC_COMMA, KC_DOT, COMBO_END};
 const uint16_t PROGMEM kc_m_k[] = { KC_M, KC_K, COMBO_END};
+const uint16_t PROGMEM kc_m_comma_dot[] = { KC_M, KC_COMMA, KC_DOT, COMBO_END};
+const uint16_t PROGMEM kc_v_c[] = { KC_V, KC_C, COMBO_END};
+const uint16_t PROGMEM kc_c_x[] = { KC_C, KC_X, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-  [COMBO_1] = COMBO(kc_a_w, QK_GESC),
-  [COMBO_2] = COMBO(kc_scln_p, KC_BSPC),
+  [COMBO_1] = COMBO(kc_q_w, QK_GESC),
+  [COMBO_2] = COMBO(kc_o_p, KC_BSPC),
   [COMBO_3] = COMBO(kc_a_s, OSM(MOD_LALT)),
   [COMBO_4] = COMBO(kc_s_d, OSM(MOD_LGUI)),
   [COMBO_5] = COMBO(kc_d_f, OSM(MOD_LCTL)),
@@ -250,6 +257,9 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMBO_19] = COMBO(kc_i_o_j, OSM(MOD_RCTL|MOD_RSFT)),
   [COMBO_20] = COMBO(kc_scln_w_o, OSM(MOD_RALT|MOD_RSFT)),
   [COMBO_21] = COMBO(kc_m_comma, KC_MINUS),
-  [COMBO_22] = COMBO(kc_m_dot, KC_UNDS),
+  [COMBO_22] = COMBO(kc_comma_dot, KC_UNDS),
   [COMBO_23] = COMBO(kc_m_k, KC_BSLS),
+  [COMBO_24] = COMBO(kc_m_comma_dot, KC_EQL),
+  [COMBO_25] = COMBO(kc_v_c, KC_GRAVE),
+  [COMBO_26] = COMBO(kc_c_x, KC_TILDE),
 };
