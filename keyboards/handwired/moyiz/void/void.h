@@ -36,19 +36,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     { R20, R21, R22, R23, R24, R25, R26 }, \
     { ___, ___, ___, R33, R34, R35, R36 } \
 }
-
-enum layers {
-  _QW = 0, // Qwerty
-  _EN, // Engram
-  _IS, // ISRT
-  _MT, // MTGAP
-  _AP, // APTv3
-  _LM, // Layer Manager
-  _NM, // Numbers
-  _SY, // Symbols
-  _NV, // Navigation
-  _MS, // Mouse
-  _MD, // Media
-  _WM, // Window Manager
-  _SS, // System
-};

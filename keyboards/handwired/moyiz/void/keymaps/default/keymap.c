@@ -32,13 +32,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //   _SS, // System
 // };
 
-
-
 #define HRM_L(a,b,c,d) LGUI_T(a), LALT_T(b), LSFT_T(c), LCTL_T(d)
 #define HRM_R(a,b,c,d) RGUI_T(a), RALT_T(b), RSFT_T(c), RCTL_T(d)
 
 #define OSSFT_R OSM(MOD_RSFT)
 #define OSSFT_L OSM(MOD_LSFT)
+#define ENT_NV LT(_NV, KC_ENT)
 
 /*
  * Template
@@ -83,10 +82,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
      // Qwerty
     [_QW] = LAYOUT(
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
-        CAPSWRD, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-        TG(_NV), KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   XXXXXXX,  XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-                                   TT(_SY), OSSFT_L, KC_BSPC,KC_SPC,   KC_ENT,  KC_DEL,  OSSFT_L, TT(_NM)
+        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
+        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+        CAPSWRD, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   XXXXXXX,  XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+                                   OSL(_SY),KC_BSPC, KC_SPC, OSSFT_L,  OSSFT_R, ENT_NV,  KC_DEL,  OSL(_NM)
     ),
 
     // ISRT
@@ -114,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_LM] = LAYOUT(
-        _______, TO(_SS), TO(_MS), _______, _______, _______,                   _______, _______, _______, TO(_MS), TO(_SS), _______, \
-        _______, TO(_MD), TO(_NV), TO(_SY), TO(_NM), _______,                   _______, TO(_NM), TO(_SY), TO(_NV), TO(_MD), _______, \
+        _______, TT(_SS), TT(_MS), _______, _______, _______,                   _______, _______, _______, TT(_MS), TT(_SS), _______, \
+        _______, TT(_MD), TT(_NV), TT(_SY), TT(_NM), _______,                   _______, TT(_NM), TT(_SY), TT(_NV), TT(_MD), _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
@@ -170,8 +169,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // System
     [_SS] = LAYOUT(
-        _______, DF(_QW), _______, _______, _______, DF(_MT),                   _______, _______, _______, _______, _______, QK_BOOT, \
-        _______, DF(_AP), DF(_IS), _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+        _______, TO(_QW), _______, _______, _______, TO(_MT),                   _______, _______, _______, _______, _______, QK_BOOT, \
+        _______, TO(_AP), TO(_IS), _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
