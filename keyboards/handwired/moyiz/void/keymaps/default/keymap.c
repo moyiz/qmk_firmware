@@ -1,5 +1,5 @@
 /*
-Copyright 2022 @moyiz
+Copyright 2023 @moyiz
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,6 +39,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OSSFT_L OSM(MOD_LSFT)
 #define ENT_NV LT(_NV, KC_ENT)
 
+#define ENT_SFT RSFT_T(KC_ENT)
+#define SPC_SFT LSFT_T(KC_SPC)
+
+#define DEL_NM LT(_NM, KC_DEL)
+#define BSP_SY LT(_SY, KC_BSPC)
+#define SPC_NM LT(_NM, KC_SPC)
+
 /*
  * Template
  *
@@ -63,29 +70,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    /*
-     *   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-     *   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-     *   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-     *                              _______, _______, _______, _______, _______, _______, _______, _______,
-     *
-     * ┌───┬───┬───┬───┬───┬───┐             ┌───┬───┬───┬───┬───┬───┐
-     * |TAB│ Q │ W │ E │ R │ T │             │ Y │ U │ I │ O │ P │ BS│
-     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
-     * |CAP│ A │ S │ D │ F │ G │             │ H │ J │ K │ L │ ; │ ' │
-     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
-     * |SHF│ Z │ X │ C │ V │ B │ ┌───┐ ┌───┐ │ N │ M │ , │ . │ / │SHF│
-     * └───┴───┴───┴───┴───┴───┘ │ESC│ │ - │ └───┴───┴───┴───┴───┴───┘
-     *               ┌───┬───┬───┼───┤ ├───┼───┬───┬───┐
-     *               │GUI│SFT│ V │ B │ │GUI│ C │SFT│SYS│
-     *               └───┴───┴───┴───┘ └───┴───┴───┴───┘
-     */
      // Qwerty
     [_QW] = LAYOUT(
         KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         CAPSWRD, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   XXXXXXX,  XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-                                   OSL(_SY),KC_BSPC, KC_SPC, OSSFT_L,  OSSFT_R, ENT_NV,  KC_DEL,  OSL(_NM)
+                                   OSL(_SS),SPC_NM,  BSP_SY, SPC_SFT,  ENT_SFT, ENT_NV,  DEL_NM,  OSL(_SS)
     ),
 
     // ISRT
@@ -113,8 +103,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_LM] = LAYOUT(
-        _______, TT(_SS), TT(_MS), _______, _______, _______,                   _______, _______, _______, TT(_MS), TT(_SS), _______, \
-        _______, TT(_MD), TT(_NV), TT(_SY), TT(_NM), _______,                   _______, TT(_NM), TT(_SY), TT(_NV), TT(_MD), _______, \
+        _______, OSL(_SS),OSL(_MS),_______, _______, _______,                   _______, _______, _______, OSL(_MS),OSL(_SS),_______, \
+        _______, OSL(_MD),OSL(_NV),OSL(_SY),OSL(_NM),_______,                   _______, OSL(_NM),OSL(_SY),OSL(_NV),OSL(_MD),_______, \
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
@@ -129,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // Symbols
     [_SY] = LAYOUT(
-        _______, KC_GRV,  _______, _______, _______, _______,                   _______, KC_SCLN, KC_BSPC, KC_LBRC, KC_RBRC, _______, \
+        _______, KC_GRV,  _______, _______, _______, _______,                   _______, KC_SCLN, KC_BSLS, KC_LBRC, KC_RBRC, _______, \
         _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   _______, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______, \
         _______, _______, _______, KC_ASTR, KC_AMPR, KC_CIRC, _______, _______, _______, KC_MINS, KC_EQL,  KC_LABK, KC_RABK, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
