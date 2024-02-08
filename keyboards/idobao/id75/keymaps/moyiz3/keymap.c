@@ -176,6 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
+//COMBO:START
 enum combos {
   COMBO_1,
   COMBO_2,
@@ -284,4 +285,4 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMBO_32] = COMBO(kc_j_m, KC_PIPE),
   [COMBO_33] = COMBO(kc_f_r, KC_SCLN),
 };
-
+//COMBO:END
