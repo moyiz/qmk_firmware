@@ -1,4 +1,4 @@
-/* Copyright 2021 moyiz
+/* Copyright 2024 moyiz
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,6 +15,7 @@
  */
 #include QMK_KEYBOARD_H
 
+
 enum layers {
     _QWE = 0,
     _ENG,
@@ -23,17 +24,19 @@ enum layers {
     _APT,
     _FN1,
     _FN2,
+    _NUM,
+    _NAV,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* QWERTY
      * .--------------------------------------------------------------------------------------------------------------------------------------.
-     * | GESC   | 1      | 2      | 3      | 4      | 5      | HOME   | PG UP  | DEL    | 6      | 7      | 8      | 9      | 0      | BACKSP |
+     * | CAP LK | 1      | 2      | 3      | 4      | 5      | HOME   | PG UP  | DEL    | 6      | 7      | 8      | 9      | 0      | BACKSP |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------|
      * | TAB    | Q      | W      | E      | R      | T      | END    | PG DN  | \      | Y      | U      | I      | O      | P      | ENTER  |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-----------------+--------|
-     * | CAP LK | A      | S      | D      | F      | G      | [      | =      | ]      | H      | J      | K      | L      | ;      | '      |
+     * | GECS   | A      | S      | D      | F      | G      | [      | =      | ]      | H      | J      | K      | L      | ;      | '      |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
      * | LSHIFT | Z      | X      | C      | V      | B      | `      | UP     | -      | N      | M      | ,      | .      | /      | RSHIFT |
      * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+--------+-----------------+--------+--------|
@@ -41,13 +44,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * '--------------------------------------------------------------------------------------------------------------------------------------'
      */
     [_QWE] = LAYOUT_ortho_5x15(
-      QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_DEL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_END,  KC_PGDN, KC_BSLS, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
-      KC_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LBRC, KC_EQL,  KC_RBRC, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+      KC_CAPS, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_HOME, KC_PGUP, KC_DEL,  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+      KC_TAB, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_END,  KC_PGDN, KC_BSLS, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
+      QK_GESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LBRC, KC_EQL,  KC_RBRC, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV,  KC_UP,   KC_MINS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
       KC_LCTL, KC_LGUI, KC_LALT, MO(_FN1),KC_BSPC, KC_SPC,  KC_LEFT, KC_DOWN, KC_RGHT, KC_SPC,  KC_ENT,  MO(_FN2),KC_RALT, KC_RGUI, KC_RCTL
     ),
 
+    // {{{1
     /* ENGRAM
      * .--------------------------------------------------------------------------------------------------------------------------------------.
      * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
@@ -131,6 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_X,    KC_C,    KC_M,    KC_P,    KC_V,    _______, _______, _______, KC_Z,    KC_COMM, KC_DOT,  KC_QUOT, KC_SLSH, _______,
       _______, _______, _______, MO(_FN1),_______, _______, _______, _______, _______, _______, _______, MO(_FN2),_______, _______, _______
     ),
+    // }}}1
 
     /* FUNCTION 1 Layer - Numpad, missing keys
      * .-----------------------------------------------------------------------------------------.-------------------------------------------.
@@ -175,8 +180,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
+// Do not mirror the 3 middle columns
+const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
+  {{14, 0}, {13, 0}, {12, 0}, {11, 0}, {10, 0}, {9, 0}, {6, 0}, {7, 0}, {8, 0}, {5, 0}, {4, 0}, {3, 0}, {2, 0}, {1, 0}, {0, 0}},
+  {{14, 1}, {13, 1}, {12, 1}, {11, 1}, {10, 1}, {9, 1}, {6, 1}, {7, 1}, {8, 1}, {5, 1}, {4, 1}, {3, 1}, {2, 1}, {1, 1}, {0, 1}},
+  {{14, 2}, {13, 2}, {12, 2}, {11, 2}, {10, 2}, {9, 2}, {6, 2}, {7, 2}, {8, 2}, {5, 2}, {4, 2}, {3, 2}, {2, 2}, {1, 2}, {0, 2}},
+  {{14, 3}, {13, 3}, {12, 3}, {11, 3}, {10, 3}, {9, 3}, {6, 3}, {7, 3}, {8, 3}, {5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}},
+  {{14, 4}, {13, 4}, {12, 4}, {11, 4}, {10, 4}, {9, 4}, {6, 4}, {7, 4}, {8, 4}, {5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {0, 4}},
+};
+
 
 //COMBO:START
+{{{1
 enum combos {
   COMBO_1,
   COMBO_2,
@@ -211,6 +226,8 @@ enum combos {
   COMBO_31,
   COMBO_32,
   COMBO_33,
+  COMBO_34,
+  COMBO_35,
   COMBO_COUNT,
 };
 
@@ -249,7 +266,9 @@ const uint16_t PROGMEM kc_w_e_r[] = { KC_W, KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM kc_j_u[] = { KC_J, KC_U, COMBO_END};
 const uint16_t PROGMEM kc_j_m[] = { KC_J, KC_M, COMBO_END};
 const uint16_t PROGMEM kc_f_r[] = { KC_F, KC_R, COMBO_END};
-
+const uint16_t PROGMEM kc_q_w_e_r[] = { KC_Q, KC_W, KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM kc_u_i_o_p[] = { KC_U, KC_I, KC_O, KC_P, COMBO_END};
+}}}1
 combo_t key_combos[COMBO_COUNT] = {
   [COMBO_1] = COMBO(kc_q_w, QK_GESC),
   [COMBO_2] = COMBO(kc_o_p, KC_BSPC),
@@ -284,5 +303,8 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMBO_31] = COMBO(kc_j_u, KC_COLN),
   [COMBO_32] = COMBO(kc_j_m, KC_PIPE),
   [COMBO_33] = COMBO(kc_f_r, KC_SCLN),
+  [COMBO_34] = COMBO(kc_q_w_e_r, SH_TG),
+  [COMBO_35] = COMBO(kc_u_i_o_p, SH_TG),
 };
 //COMBO:END
+// vim: foldmethod=marker

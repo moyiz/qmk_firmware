@@ -1,4 +1,4 @@
-/* Copyright 2021 moyiz
+/* Copyright 2024 moyiz
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,3 +20,5 @@
 #define COMBO_ONLY_FROM_LAYER 0
 #define COMBO_MUST_HOLD_MODS
 #define COMBO_TERM 20
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_INVERT_ON_SHIFT
