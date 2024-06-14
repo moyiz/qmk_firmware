@@ -4,6 +4,9 @@
 KC_Q KC_P QK_BOOT
 # OSM(MOD_RSFT) OSM(MOD_LSFT) CAPSWRD
 
+# Media
+KC_TAB KC_Q KC_MUTE
+
 # Layers
 # KC_M KC_K OSL(_LM)
 # KC_V KC_D OSL(_LM)

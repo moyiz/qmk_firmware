@@ -37,7 +37,7 @@ EOF
 fi
 
 # Read combos file
-readarray -t combos < <(cat $1 | grep -v -e '^$' -e '^#')
+readarray -t combos < <(grep -v -e '^$' -e '^#' "$1")
 
 cat << EOF
 /*
@@ -61,7 +61,8 @@ EOF
 # Create enum and COMBO_LEN
 echo -e "#include <stdint.h>"
 echo -e "#include \"$(basename ${1%%.combos}).h\"\n"
-echo enum combos {
+# echo -e "#include QMK_KEYBOARD_H"
+echo "enum combos {"
 for i in $(seq 0 $((${#combos[@]} - 1))); do
     echo "  COMBO_$((i + 1)),"
 done
@@ -73,13 +74,13 @@ const uint16_t COMBO_LEN = COMBO_COUNT;
 
 EOF
 
-# Iterate through combos and create PROGMEM variables
+# Iterate through combos and create combo variables
 declare -a names actions
 for i in $(seq 0 $((${#combos[@]} - 1))); do
-    keys=$(echo ${combos[$i]} | rev | cut -d' ' -f2- | rev | sed 's/ /, /g')
-    names[$i]=$(echo ${keys,,} | sed 's/ [^_]*_/_/g' | tr -dc '[:alnum:]_')
+    keys=$(echo "${combos[$i]}" | rev | cut -d' ' -f2- | rev | sed 's/ /, /g')
+    names[i]=$(echo "${keys,,}" | sed 's/ [^_]*_/_/g' | tr -dc '[:alnum:]_')
     echo "const uint16_t PROGMEM ${names[$i]}[] = { ${keys}, COMBO_END};"
-    actions[$i]=$(echo ${combos[$i]} | rev | cut -d' ' -f1 | rev)
+    actions[i]=$(echo "${combos[$i]}" | rev | cut -d' ' -f1 | rev)
 done
 
 # Create `key_combos`
