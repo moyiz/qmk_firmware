@@ -44,12 +44,14 @@ enum combos {
   COMBO_24,
   COMBO_25,
   COMBO_26,
+  COMBO_27,
   COMBO_COUNT,
 };
 
 const uint16_t COMBO_LEN = COMBO_COUNT;
 
 const uint16_t PROGMEM kc_q_p[] = { KC_Q, KC_P, COMBO_END};
+const uint16_t PROGMEM kc_tab_q[] = { KC_TAB, KC_Q, COMBO_END};
 const uint16_t PROGMEM kc_j_u[] = { KC_J, KC_U, COMBO_END};
 const uint16_t PROGMEM kc_k_i[] = { KC_K, KC_I, COMBO_END};
 const uint16_t PROGMEM kc_m_comma[] = { KC_M, KC_COMMA, COMBO_END};
@@ -78,29 +80,30 @@ const uint16_t PROGMEM kc_u_i_o_p[] = { KC_U, KC_I, KC_O, KC_P, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [COMBO_1] = COMBO(kc_q_p, QK_BOOT),
-  [COMBO_2] = COMBO(kc_j_u, KC_COLON),
-  [COMBO_3] = COMBO(kc_k_i, KC_PIPE),
-  [COMBO_4] = COMBO(kc_m_comma, KC_MINS),
-  [COMBO_5] = COMBO(kc_comma_dot, KC_UNDS),
-  [COMBO_6] = COMBO(kc_m_dot, KC_PLUS),
-  [COMBO_7] = COMBO(kc_m_comma_dot, KC_EQL),
-  [COMBO_8] = COMBO(kc_m_k, KC_BSLS),
-  [COMBO_9] = COMBO(kc_v_c, KC_GRAVE),
-  [COMBO_10] = COMBO(kc_c_x, KC_TILDE),
-  [COMBO_11] = COMBO(kc_f_d, OSM(MOD_LCTL)),
-  [COMBO_12] = COMBO(kc_f_s, OSM(MOD_LGUI)),
-  [COMBO_13] = COMBO(kc_f_a, OSM(MOD_LALT)),
-  [COMBO_14] = COMBO(kc_f_d_s, OSM(MOD_LCTL|MOD_LGUI)),
-  [COMBO_15] = COMBO(kc_f_d_a, OSM(MOD_LCTL|MOD_LALT)),
-  [COMBO_16] = COMBO(kc_f_s_a, OSM(MOD_LALT|MOD_LGUI)),
-  [COMBO_17] = COMBO(kc_f_d_s_a, OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)),
-  [COMBO_18] = COMBO(kc_j_k, OSM(MOD_RCTL)),
-  [COMBO_19] = COMBO(kc_j_l, OSM(MOD_RGUI)),
-  [COMBO_20] = COMBO(kc_j_scln, OSM(MOD_LALT)),
-  [COMBO_21] = COMBO(kc_j_k_l, OSM(MOD_RCTL|MOD_RGUI)),
-  [COMBO_22] = COMBO(kc_j_k_scln, OSM(MOD_RCTL|MOD_LALT)),
-  [COMBO_23] = COMBO(kc_j_l_scln, OSM(MOD_LALT|MOD_RGUI)),
-  [COMBO_24] = COMBO(kc_j_k_l_scln, OSM(MOD_RCTL|MOD_LALT|MOD_RGUI)),
-  [COMBO_25] = COMBO(kc_q_w_e_r, SH_TG),
-  [COMBO_26] = COMBO(kc_u_i_o_p, SH_TG),
+  [COMBO_2] = COMBO(kc_tab_q, KC_MUTE),
+  [COMBO_3] = COMBO(kc_j_u, KC_COLON),
+  [COMBO_4] = COMBO(kc_k_i, KC_PIPE),
+  [COMBO_5] = COMBO(kc_m_comma, KC_MINS),
+  [COMBO_6] = COMBO(kc_comma_dot, KC_UNDS),
+  [COMBO_7] = COMBO(kc_m_dot, KC_PLUS),
+  [COMBO_8] = COMBO(kc_m_comma_dot, KC_EQL),
+  [COMBO_9] = COMBO(kc_m_k, KC_BSLS),
+  [COMBO_10] = COMBO(kc_v_c, KC_GRAVE),
+  [COMBO_11] = COMBO(kc_c_x, KC_TILDE),
+  [COMBO_12] = COMBO(kc_f_d, OSM(MOD_LCTL)),
+  [COMBO_13] = COMBO(kc_f_s, OSM(MOD_LGUI)),
+  [COMBO_14] = COMBO(kc_f_a, OSM(MOD_LALT)),
+  [COMBO_15] = COMBO(kc_f_d_s, OSM(MOD_LCTL|MOD_LGUI)),
+  [COMBO_16] = COMBO(kc_f_d_a, OSM(MOD_LCTL|MOD_LALT)),
+  [COMBO_17] = COMBO(kc_f_s_a, OSM(MOD_LALT|MOD_LGUI)),
+  [COMBO_18] = COMBO(kc_f_d_s_a, OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)),
+  [COMBO_19] = COMBO(kc_j_k, OSM(MOD_RCTL)),
+  [COMBO_20] = COMBO(kc_j_l, OSM(MOD_RGUI)),
+  [COMBO_21] = COMBO(kc_j_scln, OSM(MOD_LALT)),
+  [COMBO_22] = COMBO(kc_j_k_l, OSM(MOD_RCTL|MOD_RGUI)),
+  [COMBO_23] = COMBO(kc_j_k_scln, OSM(MOD_RCTL|MOD_LALT)),
+  [COMBO_24] = COMBO(kc_j_l_scln, OSM(MOD_LALT|MOD_RGUI)),
+  [COMBO_25] = COMBO(kc_j_k_l_scln, OSM(MOD_RCTL|MOD_LALT|MOD_RGUI)),
+  [COMBO_26] = COMBO(kc_q_w_e_r, SH_TG),
+  [COMBO_27] = COMBO(kc_u_i_o_p, SH_TG),
 };

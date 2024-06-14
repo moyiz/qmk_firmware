@@ -1,5 +1,5 @@
 /*
-Copyright 2023 @moyiz
+Copyright 2024 @moyiz
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,38 +14,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include <stdint.h>
 #include QMK_KEYBOARD_H
-#include "../../void.h"
+#include "quantum.h"
+#include "config.h"
 
-// enum layers {
-//   _QW = 0, // Qwerty
-//   _EN, // Engram
-//   _IS, // ISRT
-//   _MT, // MTGAP
-//   _AP, // APTv3
-//   _LM, // Layer Manager
-//   _NM, // Numbers
-//   _SY, // Symbols
-//   _NV, // Navigation
-//   _MS, // Mouse
-//   _WM, // Window Manager
-//   _SS, // System
-// };
-
-#define HRM_L(a,b,c,d) LGUI_T(a), LALT_T(b), LSFT_T(c), LCTL_T(d)
-#define HRM_R(a,b,c,d) RGUI_T(a), RALT_T(b), RSFT_T(c), RCTL_T(d)
-
-#define OSSFT_R OSM(MOD_RSFT)
-#define OSSFT_L OSM(MOD_LSFT)
-#define ENT_NV LT(_NV, KC_ENT)
-
-#define ENT_SFT RSFT_T(KC_ENT)
-#define SPC_SFT LSFT_T(KC_SPC)
-
-#define DEL_NM LT(_NM, KC_DEL)
-#define BSP_SY LT(_SY, KC_BSPC)
-#define SPC_NM LT(_NM, KC_SPC)
-
+// clang-format off
 /*
  * Template
  *
@@ -64,18 +38,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
  *   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
  *   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
- *                              _______, _______, _______, _______, _______, _______, _______, _______,
+ *                              _______, _______, _______, _______, _______, _______, _______, _______
  * ),
  */
 
 
+#define SPC_SFT LSFT_T(KC_SPC)
+#define ENT_SFT RSFT_T(KC_ENT)
+
+#define TAB_SFT LSFT_T(KC_TAB)
+#define BS_SFT LSFT_T(KC_BSPC)
+
+enum custom_keycode {
+    LOWER = SAFE_RANGE,
+    RAISE,
+    ADJUST
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      // Qwerty
     [_QW] = LAYOUT(
-        KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
-        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-        CAPSWRD, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   XXXXXXX,  XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-                                   OSL(_SS),SPC_NM,  BSP_SY, SPC_SFT,  ENT_SFT, ENT_NV,  DEL_NM,  OSL(_SS)
+        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
+        KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+        CW_TOGG, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   QK_AREP,  QK_REP,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+                                   MO(_SS), RAISE,   RAISE,  SPC_SFT,  ENT_SFT, LOWER,   LOWER,   MO(_SS)
     ),
 
     // ISRT
@@ -86,6 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
+    //{{{
     // MTGAP
     [_MT] = LAYOUT(
         _______, KC_Y,    KC_P,    KC_O,    KC_U,    KC_J,                      KC_K,    KC_D,    KC_L,    KC_C,    KC_W,    _______, \
@@ -101,35 +88,62 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_X,    KC_C,    KC_M,    KC_P,    KC_V,    _______, _______, KC_Z,    KC_COMM, KC_DOT,  KC_QUOT, KC_SLSH, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
+    //}}}
 
-    [_LM] = LAYOUT(
-        _______, OSL(_SS),OSL(_MS),_______, _______, _______,                   _______, _______, _______, OSL(_MS),OSL(_SS),_______, \
-        _______, OSL(_MD),OSL(_NV),OSL(_SY),OSL(_NM),_______,                   _______, OSL(_NM),OSL(_SY),OSL(_NV),OSL(_MD),_______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-                                   _______, _______, _______, _______, _______, _______, _______, _______
-    ),
-
-    // Numbers & Functions
-    [_NM] = LAYOUT(
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
+    /*
+     * ┌───┬───┬───┬───┬───┬───┐             ┌───┬───┬───┬───┬───┬───┐
+     * |   │   │ 1 │ 2 │ 3 │   │             │   │   │   │   │   │   │
+     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
+     * |   │ 0 │ 4 │ 5 │ 6 │   │             │   │ < │ v │ ^ │ > │   │
+     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
+     * |   │   │ 7 │ 8 │ 9 │   │ ┌───┐ ┌───┐ │   │ H │PD │PU │ E │   │
+     * └───┴───┴───┴───┴───┴───┘ │   │ │   │ └───┴───┴───┴───┴───┴───┘
+     *               ┌───┬───┬───┼───┤ ├───┼───┬───┬───┐
+     *               │   │   │   │   │ │   │   │   │   │
+     *               └───┴───┴───┴───┘ └───┴───┴───┴───┘
+     */
+    [_LOW] = LAYOUT(
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
-        _______, KC_0,    KC_9,    KC_8,    KC_7,    KC_6,    _______, _______, KC_5,    KC_4,    KC_3,    KC_2,    KC_1,    _______, \
-                                   _______, _______, _______, _______, _______, _______, _______, _______
+        _______, _______, _______, _______, _______, KC_DOT,                    _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, \
+                                   _______, _______, _______, BS_SFT,  _______, _______, _______, _______
     ),
 
-    // Symbols
-    [_SY] = LAYOUT(
-        _______, KC_GRV,  _______, _______, _______, _______,                   _______, KC_SCLN, KC_BSLS, KC_LBRC, KC_RBRC, _______, \
-        _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   _______, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______, \
-        _______, _______, _______, KC_ASTR, KC_AMPR, KC_CIRC, _______, _______, _______, KC_MINS, KC_EQL,  KC_LABK, KC_RABK, _______, \
-                                   _______, _______, _______, _______, _______, _______, _______, _______
+    /*
+     * ┌───┬───┬───┬───┬───┬───┐             ┌───┬───┬───┬───┬───┬───┐
+     * |   │   │ ! │ @ │ # │   │             │   │ ; │ ( │ ) │   │   │
+     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
+     * |   │   │ $ │ % │ ^ │   │             │   │ : │ [ │ ] │   │   │
+     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
+     * |   │   │ & │ * │   │   │ ┌───┐ ┌───┐ │   │   │ { │ } │   │   │
+     * └───┴───┴───┴───┴───┴───┘ │   │ │   │ └───┴───┴───┴───┴───┴───┘
+     *               ┌───┬───┬───┼───┤ ├───┼───┬───┬───┐
+     *               │   │   │   │   │ │BS │   │   │   │
+     *               └───┴───┴───┴───┘ └───┴───┴───┴───┘
+     */
+    [_RAI] = LAYOUT(
+        _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
+        _______, KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, _______,                   _______, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK, _______, \
+        _______, _______, _______, _______, KC_DQUO, _______, _______, _______, _______, KC_SCLN, KC_COLN, KC_PIPE, _______, _______, \
+                                   _______, _______, _______, _______, TAB_SFT, _______, _______, _______
     ),
 
-    // Navigation
-    [_NV] = LAYOUT(
-        _______, _______, _______, KC_PGUP, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-        _______, KC_PSCR, KC_HOME, KC_PGDN, KC_END,  _______,                   _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, \
-        _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+    /*
+     * ┌───┬───┬───┬───┬───┬───┐             ┌───┬───┬───┬───┬───┬───┐
+     * |   │   │   │   │   │   │             │   │   │   │   │   │   │
+     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
+     * |   │   │   │   │   │   │             │   │   │   │   │   │   │
+     * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
+     * |   │   │   │   │   │   │ ┌───┐ ┌───┐ │   │   │   │   │   │   │
+     * └───┴───┴───┴───┴───┴───┘ │   │ │   │ └───┴───┴───┴───┴───┴───┘
+     *               ┌───┬───┬───┼───┤ ├───┼───┬───┬───┐
+     *               │   │   │   │   │ │   │   │   │   │
+     *               └───┴───┴───┴───┘ └───┴───┴───┴───┘
+     */
+    [_ADJ] = LAYOUT(
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
+        _______, KC_VOLD, KC_MPRV, KC_MNXT, KC_VOLU, _______,                   _______, _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -141,6 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
+    /*
     // Media & Brightness
     [_MD] = LAYOUT(
         _______, _______, KC_BRID, KC_MPLY, KC_BRIU, _______,                   _______, _______, _______, _______, _______, _______, \
@@ -148,7 +163,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, KC_VOLD, KC_MUTE, KC_VOLU, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
-
+,
     // Window manager
     [_WM] = LAYOUT(
         _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
@@ -156,12 +171,87 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
+    */
 
     // System
     [_SS] = LAYOUT(
-        _______, TO(_QW), _______, _______, _______, TO(_MT),                   _______, _______, _______, _______, _______, QK_BOOT, \
-        _______, TO(_AP), TO(_IS), _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        KC_VOLU, TO(_QW), _______, _______, _______, TO(_MT),                   _______, _______, _______, _______, _______, QK_BOOT, \
+        KC_VOLD, TO(_AP), TO(_IS), _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+        KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
+
+    /*
+    // Misc
+    [_LK] = LAYOUT(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+                                   QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+    )
+    */
 };
+
+// clang-format on
+
+// Auto suspend
+// static uint32_t last_keypress_time = 0;
+//
+// void matrix_scan_user(void) {
+//     if (timer_elapsed(last_keypress_time) > TIMEOUT_PERIOD) {
+//         layer_on(_LK);
+//     } else {
+//         layer_off(_LK);
+//     }
+// }
+//
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     if (record->event.pressed) {
+//         last_keypress_time = timer_read();
+//     }
+//
+//     return true;
+// }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LOWER:
+            if (record->tap.count == 0) {
+                if (record->event.pressed) {
+                    layer_on(_LOW);
+                } else {
+                    layer_off(_LOW);
+                }
+                update_tri_layer(_LOW, _RAI, _ADJ);
+                return false;
+            } else {
+                register_code(KC_SPACE);
+                unregister_code(KC_SPACE);
+                return true;
+            }
+        case RAISE:
+            if (record->tap.count == 0) {
+                if (record->event.pressed) {
+                    layer_on(_RAI);
+                } else {
+                    layer_off(_RAI);
+                }
+                update_tri_layer(_LOW, _RAI, _ADJ);
+                return false;
+            } else {
+                register_code(KC_BSPC);
+                unregister_code(KC_BSPC);
+                return true;
+            }
+        case ADJUST:
+            if (record->event.pressed) {
+                layer_on(_ADJ);
+            } else {
+                layer_off(_ADJ);
+            }
+            return false;
+    }
+    return true;
+}
+
+// vim: foldmethod=marker

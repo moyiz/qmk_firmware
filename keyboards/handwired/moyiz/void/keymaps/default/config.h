@@ -1,5 +1,5 @@
 /*
-Copyright 2022 @moyiz
+Copyright 2024 @moyiz
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,13 +36,18 @@ enum layer {
     _IS,     // ISRT
     _MT,     // MTGAP
     _AP,     // APTv3
-    _LM,     // Layer Manager
-    _NM,     // Numbers
-    _SY,     // Symbols
-    _NV,     // Navigation
+    _LOW,    // Lower
+    _RAI,    // Raise
+    _ADJ,    // Adjust
     _MS,     // Mouse
-    _MD,     // Media
-    _WM,     // Window Manager
-    _SS,     // System
+    // _WM,     // Window Manager
+    _SS, // System
+    // _MC,     // Misc
+    // _LK,     // Lock
 };
+
 #endif
+
+// #define TRI_LAYER_LOWER_LAYER _LOW
+// #define TRI_LAYER_UPPER_LAYER _RAI
+// #define TRI_LAYER_ADJUST_LAYER _ADJ

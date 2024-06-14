@@ -1,0 +1,4 @@
+build: na r combos && qmk compile -kb handwired/moyiz/void -km default
+combos: ./scripts/combo.sh ./keymaps/default/void.combos > keymaps/default/combos.c
+flash: na r combos && qmk flash -kb handwired/moyiz/void -km default
+lint: qmk lint -kb handwired/moyiz/void
