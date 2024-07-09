@@ -41,7 +41,7 @@ readarray -t combos < <(cat $1 | grep -v -e '^$' -e '^#')
 
 # Create enum and COMBO_LEN
 echo //COMBO:START
-echo {{{1
+echo '//{{{1'
 # echo -e "#include \"$(basename ${1%%.combos}).h\"\n"
 echo enum combos {
 for i in $(seq 0 $((${#combos[@]} - 1))); do
@@ -65,7 +65,7 @@ for i in $(seq 0 $((${#combos[@]} - 1))); do
 done
 
 # Create `key_combos`
-echo }}}1
+echo '//}}}1'
 echo "combo_t key_combos[COMBO_COUNT] = {"
 for i in $(seq 0 $((${#combos[@]} - 1))); do
     echo "  [COMBO_$((i + 1))] = COMBO(${names[$i]}, ${actions[$i]}),"
