@@ -48,12 +48,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define TAB_SFT LSFT_T(KC_TAB)
 #define BS_SFT LSFT_T(KC_BSPC)
+#define DEL_SFT LSFT_T(KC_DEL)
 
-enum custom_keycode {
-    LOWER = SAFE_RANGE,
-    RAISE,
-    ADJUST
-};
+#define LOWER MO(_LOW)
+#define RAISE MO(_RAI)
+
+#define OS_LOW OSL(_LOW)
+#define OS_RAI OSL(_RAI)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      // Qwerty
@@ -61,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
         KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
         CW_TOGG, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   QK_AREP,  QK_REP,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-                                   MO(_SS), RAISE,   RAISE,  SPC_SFT,  ENT_SFT, LOWER,   LOWER,   MO(_SS)
+                                   MO(_SS), OS_LOW,  RAISE,  SPC_SFT,  ENT_SFT, LOWER,   OS_RAI,  MO(_SS)
     ),
 
     // ISRT
@@ -92,14 +93,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /*
      * ┌───┬───┬───┬───┬───┬───┐             ┌───┬───┬───┬───┬───┬───┐
-     * |   │   │ 1 │ 2 │ 3 │   │             │   │   │   │   │   │   │
+     * |   │ 1 │ 2 │ 3 │ 4 │ 5 │             │ 6 │ 7 │ 8 │ 9 │ 0 │   │
      * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
-     * |   │ 0 │ 4 │ 5 │ 6 │   │             │   │ < │ v │ ^ │ > │   │
+     * |   │   │   │   │   │ . │             │   │ < │ v │ ^ │ > │   │
      * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
-     * |   │   │ 7 │ 8 │ 9 │   │ ┌───┐ ┌───┐ │   │ H │PD │PU │ E │   │
+     * |   │   │   │   │   │   │ ┌───┐ ┌───┐ │   │ H │PD │PU │ E │   │
      * └───┴───┴───┴───┴───┴───┘ │   │ │   │ └───┴───┴───┴───┴───┴───┘
      *               ┌───┬───┬───┼───┤ ├───┼───┬───┬───┐
-     *               │   │   │   │   │ │   │   │   │   │
+     *               │   │   │   │BS │ │   │   │   │   │
      *               └───┴───┴───┴───┘ └───┴───┴───┴───┘
      */
     [_LOW] = LAYOUT(
@@ -111,21 +112,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /*
      * ┌───┬───┬───┬───┬───┬───┐             ┌───┬───┬───┬───┬───┬───┐
-     * |   │   │ ! │ @ │ # │   │             │   │ ; │ ( │ ) │   │   │
+     * |   │ ! │ @ │ # │ $ │ % │             │ ^ │ & │ * │ ( │ ) │   │
      * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
-     * |   │   │ $ │ % │ ^ │   │             │   │ : │ [ │ ] │   │   │
+     * |   │ < │ { │ [ │ ( │   │             │   │ ) │ ] │ } │ > │   │
      * ├───┼───┼───┼───┼───┤───┤             ├───┼───┼───┼───┼───┼───┤
-     * |   │   │ & │ * │   │   │ ┌───┐ ┌───┐ │   │   │ { │ } │   │   │
+     * |CPS│   │   │   │ " │   │ ┌───┐ ┌───┐ │   │ ; │ : │ | │   │   │
      * └───┴───┴───┴───┴───┴───┘ │   │ │   │ └───┴───┴───┴───┴───┴───┘
      *               ┌───┬───┬───┼───┤ ├───┼───┬───┬───┐
-     *               │   │   │   │   │ │BS │   │   │   │
+     *               │   │   │   │DEL│ │TAB│   │   │   │
      *               └───┴───┴───┴───┘ └───┴───┴───┴───┘
      */
     [_RAI] = LAYOUT(
         _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
         _______, KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, _______,                   _______, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK, _______, \
-        _______, _______, _______, _______, KC_DQUO, _______, _______, _______, _______, KC_SCLN, KC_COLN, KC_PIPE, _______, _______, \
-                                   _______, _______, _______, _______, TAB_SFT, _______, _______, _______
+        KC_CAPS, _______, _______, _______, KC_DQUO, _______, _______, _______, _______, KC_SCLN, KC_COLN, KC_PIPE, _______, _______, \
+                                   _______, _______, _______, DEL_SFT, TAB_SFT, _______, _______, _______
     ),
 
     /*
@@ -141,15 +142,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *               └───┴───┴───┴───┘ └───┴───┴───┴───┘
      */
     [_ADJ] = LAYOUT(
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
-        _______, KC_VOLD, KC_MPRV, KC_MNXT, KC_VOLU, _______,                   _______, _______, _______, _______, _______, _______, \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______, \
+        _______, _______, _______, KC_VOLD, KC_VOLU, KC_F11,                    KC_F12,  _______, _______, _______, _______, _______, \
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, _______, _______, KC_MNXT, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
     // Mouse
     [_MS] = LAYOUT(
-        _______, _______, _______, _______, _______, _______,                   _______, _______, KC_BTN1, KC_BTN2, _______, _______, \
+        _______, _______, _______, _______, _______, _______,                   _______, KC_BTN1, KC_BTN2, KC_BTN3, KC_BTN4, _______, \
         _______, _______, _______, _______, _______, _______,                   _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, \
         _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE, _______, _______, _______, _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
@@ -175,9 +176,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // System
     [_SS] = LAYOUT(
-        KC_VOLU, TO(_QW), _______, _______, _______, TO(_MT),                   _______, _______, _______, _______, _______, QK_BOOT, \
-        KC_VOLD, TO(_AP), TO(_IS), _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-        KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+        KC_MUTE, TO(_QW), _______, _______, _______, TO(_MT),                   _______, _______, _______, _______, _______, QK_BOOT, \
+        KC_VOLU, TO(_AP), TO(_IS), _______, _______, _______,                   _______, TG(_MS), _______, _______, _______, _______, \
+        KC_VOLD, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
                                    _______, _______, _______, _______, _______, _______, _______, _______
     ),
 
@@ -213,45 +214,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     return true;
 // }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LOWER:
-            if (record->tap.count == 0) {
-                if (record->event.pressed) {
-                    layer_on(_LOW);
-                } else {
-                    layer_off(_LOW);
-                }
-                update_tri_layer(_LOW, _RAI, _ADJ);
-                return false;
-            } else {
-                register_code(KC_SPACE);
-                unregister_code(KC_SPACE);
-                return true;
-            }
-        case RAISE:
-            if (record->tap.count == 0) {
-                if (record->event.pressed) {
-                    layer_on(_RAI);
-                } else {
-                    layer_off(_RAI);
-                }
-                update_tri_layer(_LOW, _RAI, _ADJ);
-                return false;
-            } else {
-                register_code(KC_BSPC);
-                unregister_code(KC_BSPC);
-                return true;
-            }
-        case ADJUST:
-            if (record->event.pressed) {
-                layer_on(_ADJ);
-            } else {
-                layer_off(_ADJ);
-            }
-            return false;
-    }
-    return true;
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, _RAI, _LOW, _ADJ);
 }
 
 // vim: foldmethod=marker
