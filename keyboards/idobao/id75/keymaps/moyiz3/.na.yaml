@@ -1,3 +1,3 @@
-combos: awk -i inplace -v INPLACE_SUFFIX=.bkp -v combos="$(./combo.sh moyiz.combos)"  -v RS='[^\n]*COMBO:START.*COMBO:END' -v ORS= '1;NR==1{printf combos}' keymap.c
+combos: gawk -i inplace -v INPLACE_SUFFIX=.bkp -v combos="$(./combo.sh moyiz.combos)"  -v RS='[^\n]*COMBO:START.*COMBO:END' -v ORS= '1;NR==1{printf combos}' keymap.c
 compile: na r -l combos && qmk compile -kb idobao/id75/v1 -km moyiz3
 flash: na r -l combos && qmk flash -kb idobao/id75/v1 -km moyiz3
