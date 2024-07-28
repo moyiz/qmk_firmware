@@ -162,10 +162,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
     [_FN1] = LAYOUT_ortho_5x15(
       KC_GRV,  _______, _______, _______, KC_PSCR, _______, _______, KC_PSLS, KC_PAST, KC_PMNS, _______, _______, KC_MINS, KC_EQL,  KC_DEL,
-      _______, _______, _______, _______, _______, _______, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, _______, _______, KC_LBRC, KC_RBRC, KC_HOME,
-      MO(_FN2),_______, _______, _______, _______, _______, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, _______, _______, _______, KC_BSLS, KC_END,
-      _______, _______, _______, _______, _______, _______, KC_P1,   KC_P2,   KC_P3,   KC_PENT, _______, _______, _______, _______, KC_PGUP,
-      _______, _______, _______, _______, _______, DEL_SFT, KC_P0,   KC_P0,   KC_PDOT, TAB_SFT, _______, _______, _______, KC_APP,  KC_PGDN
+      _______, _______, _______, _______, _______, _______, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, _______, _______, KC_LBRC, KC_RBRC, KC_BSLS,
+      MO(_FN2),KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, _______, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK, _______,
+      _______, _______, _______, _______, KC_DQUO, _______, KC_P1,   KC_P2,   KC_P3,   KC_PENT, KC_SCLN, KC_COLN, KC_PIPE, _______, _______,
+      _______, _______, _______, _______, _______, DEL_SFT, KC_P0,   KC_P0,   KC_PDOT, TAB_SFT, _______, _______, _______, KC_APP,  _______
     ),
 
     /* FUNCTION 2 Layer - Functions (F1-12, media, arrows, rgb, extra)
@@ -297,4 +297,4 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMBO_28] = COMBO(kc_u_i_o_p, SH_TG),
 };
 //COMBO:END
-//      vim: foldmethod=marker
+//       vim: foldmethod=marker
