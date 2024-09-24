@@ -22,3 +22,14 @@
 #define COMBO_TERM 20
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_INVERT_ON_SHIFT
+
+// Allows sending more than one key per scan. By default, only one key event
+// gets sent via process_record() per scan. This has little impact on most
+// typing, but if you're doing a lot of chords, or your scan rate is slow to
+// begin with, you can have some delay in processing key events. Each press
+// and release is a separate event. For a keyboard with 1ms or so scan times,
+// even a very fast typist isn't going to produce the 500 keystrokes a second
+// needed to actually get more than a few ms of delay from this. But if you're
+// doing chording on something with 3-4ms scan times? You probably want this.
+// Also: https://github.com/qmk/qmk_firmware/issues/13833
+#define QMK_KEYS_PER_SCAN 4

@@ -21,16 +21,15 @@ enum layers {
     _ISR,
     _MTG,
     _APT,
-    _FN1,
-    _FN2,
-    _NUM,
-    _NAV,
+    _RAI,
+    _LOW,
+    _ADJ,
 };
 
 #define SPC_SFT LSFT_T(KC_SPC)
 #define ENT_SFT RSFT_T(KC_ENT)
-#define OS_FN1 OSL(_FN1)
-#define OS_FN2 OSL(_FN2)
+#define OS_RAI OSL(_RAI)
+#define OS_LOW OSL(_LOW)
 
 #define TAB_SFT LSFT_T(KC_TAB)
 #define BS_SFT LSFT_T(KC_BSPC)
@@ -50,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------------------------+--------|
      * | LSHIFT | Z      | X      | C      | V      | B      | `      | UP     | -      | N      | M      | ,      | .      | /      | RSHIFT |
      * |--------+--------+--------+--------+--------+-----------------+--------+--------+--------+--------+-----------------+--------+--------|
-     * | LCTRL  | LGUI   | LALT   | FN1    | BACKSP | SPACE  | LEFT   | DOWN   | RIGHT  | SPACE  | ENTER  | FN2    | RALT   | RGUI   | RCTRL  |
+     * | LCTRL  | LGUI   | LALT   | RAI    | BACKSP | SPACE  | LEFT   | DOWN   | RIGHT  | SPACE  | ENTER  | LOW    | RALT   | RGUI   | RCTRL  |
      * '--------------------------------------------------------------------------------------------------------------------------------------'
      */
     [_QWE] = LAYOUT_ortho_5x15(
@@ -58,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_END,  KC_PGDN, KC_BSLS, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_ENT,
       KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_LBRC, KC_EQL,  KC_RBRC, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_GRV,  KC_UP,   KC_MINS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-      KC_LCTL, KC_LGUI, KC_LALT, OS_FN2,  MO(_FN1),SPC_SFT, KC_LEFT, KC_DOWN, KC_RGHT, ENT_SFT, MO(_FN2),OS_FN1,  KC_RALT, KC_RGUI, KC_RCTL
+      KC_LCTL, KC_LGUI, KC_LALT, OS_LOW,  MO(_RAI),SPC_SFT, KC_LEFT, KC_DOWN, KC_RGHT, ENT_SFT, MO(_LOW),OS_RAI,  KC_RALT, KC_RGUI, KC_RCTL
     ),
 
     // {{{1
@@ -153,17 +152,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
      * |        |        |        |        |        |        | P7     | P8     | P9     | P+     |        |        | [      | ]      | HOME  |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
-     * | FN2    |        |        |        |        |        | P4     | P5     | P6     | P=     |        |        |        | \      | END   |
+     * | LOW    |        |        |        |        |        | P4     | P5     | P6     | P=     |        |        |        | \      | END   |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
      * |        |        |        |        |        |        | P1     | P2     | P3     | PENT   |        |        |        |        | PG UP |
      * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
      * |        |        |        |        |        |        | P0     | P0     | P.     | PENT   |        |        |        | MENU   | PG DN |
      * '-----------------------------------------------------------------------------------------'-------------------------------------------'
      */
-    [_FN1] = LAYOUT_ortho_5x15(
+    [_RAI] = LAYOUT_ortho_5x15(
       KC_GRV,  _______, _______, _______, KC_PSCR, _______, _______, KC_PSLS, KC_PAST, KC_PMNS, _______, _______, KC_MINS, KC_EQL,  KC_DEL,
       _______, _______, _______, _______, _______, _______, KC_P7,   KC_P8,   KC_P9,   KC_PPLS, _______, _______, KC_LBRC, KC_RBRC, KC_BSLS,
-      MO(_FN2),KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, _______, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK, _______,
+      MO(_LOW),KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, _______, KC_P4,   KC_P5,   KC_P6,   KC_PEQL, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK, _______,
       _______, _______, _______, _______, KC_DQUO, _______, KC_P1,   KC_P2,   KC_P3,   KC_PENT, KC_SCLN, KC_COLN, KC_PIPE, _______, _______,
       _______, _______, _______, _______, _______, DEL_SFT, KC_P0,   KC_P0,   KC_PDOT, TAB_SFT, _______, _______, _______, KC_APP,  _______
     ),
@@ -181,12 +180,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |        |        |        |        | DEL    |        | PREV   | STOP   | NEXT   |        |        |        |        |        |       |
      * '-----------------------------------------------------------------------------------------'-------------------------------------------'
      */
-    [_FN2] = LAYOUT_ortho_5x15(
-      KC_MUTE, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  KC_F12,  QK_BOOT, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, TO(_QWE),_______, TO(_ENG),_______, _______, RGB_RMOD,RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_BRID, KC_BRIU, _______,
-      _______, TO(_APT),TO(_ISR),_______, _______, TO(_MTG),KC_VOLD, KC_MUTE, KC_VOLU, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______,
+    [_LOW] = LAYOUT_ortho_5x15(
+      KC_MUTE, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  KC_F12,  _______, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, KC_VOLD, KC_MUTE, KC_VOLU, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______,
       _______, _______, _______, _______, _______, _______, KC_MRWD, KC_MPLY, KC_MFFD, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
       _______, _______, _______, _______, _______, BS_SFT,  KC_MPRV, KC_MSTP, KC_MNXT, _______, _______, _______, _______, _______, _______
+    ),
+
+    /* ADJUST Layer - Functions (F1-12, media, arrows, rgb, extra)
+     * .--------------------------------------------------------------------------------.----------------------------------------------------.
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |       |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |       |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |       |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |       |
+     * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------|
+     * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |       |
+     * '-----------------------------------------------------------------------------------------'-------------------------------------------'
+     */
+    [_ADJ] = LAYOUT_ortho_5x15(
+      KC_MUTE, _______, _______, _______, _______, _______, _______, _______, QK_BOOT, _______, _______, _______, _______, _______, _______,
+      _______, TO(_QWE),_______, TO(_ENG),_______, _______, RGB_RMOD,RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_BRID, KC_BRIU, _______,
+      _______, TO(_APT),TO(_ISR),_______, _______, TO(_MTG),KC_VOLD, KC_MUTE, KC_VOLU, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 };
 
@@ -200,6 +220,10 @@ const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // clang-format on
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    return update_tri_layer_state(state, _RAI, _LOW, _ADJ);
+}
 
 //COMBO:START
 //{{{1
@@ -297,4 +321,4 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMBO_28] = COMBO(kc_u_i_o_p, SH_TG),
 };
 //COMBO:END
-//       vim: foldmethod=marker
+//        vim: foldmethod=marker
