@@ -40,6 +40,7 @@ enum layer {
     _RAI,    // Raise
     _ADJ,    // Adjust
     _MS,     // Mouse
+    _GM,     // Gaming
     // _WM,     // Window Manager
     _SS, // System
     // _MC,     // Misc
