@@ -202,8 +202,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * '-----------------------------------------------------------------------------------------'-------------------------------------------'
      */
     [_ADJ] = LAYOUT_ortho_5x15(
-      KC_MUTE, _______, _______, _______, _______, _______, _______, _______, QK_BOOT, _______, _______, _______, _______, _______, _______,
-      _______, TO(_QWE),_______, TO(_ENG),_______, _______, RGB_RMOD,RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_BRID, KC_BRIU, _______,
+      KC_MUTE, _______, _______, _______, _______, _______, UG_TOGG, UG_PREV, UG_NEXT, _______, _______, _______, _______, _______, QK_BOOT,
+      _______, TO(_QWE),_______, TO(_ENG),_______, _______, UG_HUEU, UG_SATU, UG_VALU, UG_SPDU, _______, _______, KC_BRID, KC_BRIU, _______,
       _______, TO(_APT),TO(_ISR),_______, _______, TO(_MTG),KC_VOLD, KC_MUTE, KC_VOLU, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -225,100 +225,100 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return update_tri_layer_state(state, _RAI, _LOW, _ADJ);
 }
 
-// COMBO:START
+//COMBO:START
 //{{{1
 enum combos {
-    COMBO_1,
-    COMBO_2,
-    COMBO_3,
-    COMBO_4,
-    COMBO_5,
-    COMBO_6,
-    COMBO_7,
-    COMBO_8,
-    COMBO_9,
-    COMBO_10,
-    COMBO_11,
-    COMBO_12,
-    COMBO_13,
-    COMBO_14,
-    COMBO_15,
-    COMBO_16,
-    COMBO_17,
-    COMBO_18,
-    COMBO_19,
-    COMBO_20,
-    COMBO_21,
-    COMBO_22,
-    COMBO_23,
-    COMBO_24,
-    COMBO_25,
-    COMBO_26,
-    COMBO_27,
-    COMBO_28,
-    COMBO_COUNT,
+  COMBO_1,
+  COMBO_2,
+  COMBO_3,
+  COMBO_4,
+  COMBO_5,
+  COMBO_6,
+  COMBO_7,
+  COMBO_8,
+  COMBO_9,
+  COMBO_10,
+  COMBO_11,
+  COMBO_12,
+  COMBO_13,
+  COMBO_14,
+  COMBO_15,
+  COMBO_16,
+  COMBO_17,
+  COMBO_18,
+  COMBO_19,
+  COMBO_20,
+  COMBO_21,
+  COMBO_22,
+  COMBO_23,
+  COMBO_24,
+  COMBO_25,
+  COMBO_26,
+  COMBO_27,
+  COMBO_28,
+  COMBO_COUNT,
 };
 
 const uint16_t COMBO_LEN = COMBO_COUNT;
 
-const uint16_t PROGMEM kc_q_p[]         = {KC_Q, KC_P, COMBO_END};
-const uint16_t PROGMEM kc_q_w[]         = {KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM kc_o_p[]         = {KC_O, KC_P, COMBO_END};
-const uint16_t PROGMEM kc_j_u[]         = {KC_J, KC_U, COMBO_END};
-const uint16_t PROGMEM kc_k_i[]         = {KC_K, KC_I, COMBO_END};
-const uint16_t PROGMEM kc_m_comma[]     = {KC_M, KC_COMMA, COMBO_END};
-const uint16_t PROGMEM kc_comma_dot[]   = {KC_COMMA, KC_DOT, COMBO_END};
-const uint16_t PROGMEM kc_m_dot[]       = {KC_M, KC_DOT, COMBO_END};
-const uint16_t PROGMEM kc_m_comma_dot[] = {KC_M, KC_COMMA, KC_DOT, COMBO_END};
-const uint16_t PROGMEM kc_m_k[]         = {KC_M, KC_K, COMBO_END};
-const uint16_t PROGMEM kc_v_c[]         = {KC_V, KC_C, COMBO_END};
-const uint16_t PROGMEM kc_c_x[]         = {KC_C, KC_X, COMBO_END};
-const uint16_t PROGMEM kc_f_d[]         = {KC_F, KC_D, COMBO_END};
-const uint16_t PROGMEM kc_f_s[]         = {KC_F, KC_S, COMBO_END};
-const uint16_t PROGMEM kc_f_a[]         = {KC_F, KC_A, COMBO_END};
-const uint16_t PROGMEM kc_f_d_s[]       = {KC_F, KC_D, KC_S, COMBO_END};
-const uint16_t PROGMEM kc_f_d_a[]       = {KC_F, KC_D, KC_A, COMBO_END};
-const uint16_t PROGMEM kc_f_s_a[]       = {KC_F, KC_S, KC_A, COMBO_END};
-const uint16_t PROGMEM kc_f_d_s_a[]     = {KC_F, KC_D, KC_S, KC_A, COMBO_END};
-const uint16_t PROGMEM kc_j_k[]         = {KC_J, KC_K, COMBO_END};
-const uint16_t PROGMEM kc_j_l[]         = {KC_J, KC_L, COMBO_END};
-const uint16_t PROGMEM kc_j_scln[]      = {KC_J, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM kc_j_k_l[]       = {KC_J, KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM kc_j_k_scln[]    = {KC_J, KC_K, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM kc_j_l_scln[]    = {KC_J, KC_L, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM kc_j_k_l_scln[]  = {KC_J, KC_K, KC_L, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM kc_q_w_e_r[]     = {KC_Q, KC_W, KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM kc_u_i_o_p[]     = {KC_U, KC_I, KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM kc_q_p[] = { KC_Q, KC_P, COMBO_END};
+const uint16_t PROGMEM kc_q_w[] = { KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM kc_o_p[] = { KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM kc_j_u[] = { KC_J, KC_U, COMBO_END};
+const uint16_t PROGMEM kc_k_i[] = { KC_K, KC_I, COMBO_END};
+const uint16_t PROGMEM kc_m_comma[] = { KC_M, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM kc_comma_dot[] = { KC_COMMA, KC_DOT, COMBO_END};
+const uint16_t PROGMEM kc_m_dot[] = { KC_M, KC_DOT, COMBO_END};
+const uint16_t PROGMEM kc_m_comma_dot[] = { KC_M, KC_COMMA, KC_DOT, COMBO_END};
+const uint16_t PROGMEM kc_m_k[] = { KC_M, KC_K, COMBO_END};
+const uint16_t PROGMEM kc_v_c[] = { KC_V, KC_C, COMBO_END};
+const uint16_t PROGMEM kc_c_x[] = { KC_C, KC_X, COMBO_END};
+const uint16_t PROGMEM kc_f_d[] = { KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM kc_f_s[] = { KC_F, KC_S, COMBO_END};
+const uint16_t PROGMEM kc_f_a[] = { KC_F, KC_A, COMBO_END};
+const uint16_t PROGMEM kc_f_d_s[] = { KC_F, KC_D, KC_S, COMBO_END};
+const uint16_t PROGMEM kc_f_d_a[] = { KC_F, KC_D, KC_A, COMBO_END};
+const uint16_t PROGMEM kc_f_s_a[] = { KC_F, KC_S, KC_A, COMBO_END};
+const uint16_t PROGMEM kc_f_d_s_a[] = { KC_F, KC_D, KC_S, KC_A, COMBO_END};
+const uint16_t PROGMEM kc_j_k[] = { KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM kc_j_l[] = { KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM kc_j_scln[] = { KC_J, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM kc_j_k_l[] = { KC_J, KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM kc_j_k_scln[] = { KC_J, KC_K, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM kc_j_l_scln[] = { KC_J, KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM kc_j_k_l_scln[] = { KC_J, KC_K, KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM kc_q_w_e_r[] = { KC_Q, KC_W, KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM kc_u_i_o_p[] = { KC_U, KC_I, KC_O, KC_P, COMBO_END};
 //}}}1
 combo_t key_combos[COMBO_COUNT] = {
-    [COMBO_1]  = COMBO(kc_q_p, QK_BOOT),
-    [COMBO_2]  = COMBO(kc_q_w, QK_GESC),
-    [COMBO_3]  = COMBO(kc_o_p, KC_BSPC),
-    [COMBO_4]  = COMBO(kc_j_u, KC_COLON),
-    [COMBO_5]  = COMBO(kc_k_i, KC_PIPE),
-    [COMBO_6]  = COMBO(kc_m_comma, KC_MINS),
-    [COMBO_7]  = COMBO(kc_comma_dot, KC_UNDS),
-    [COMBO_8]  = COMBO(kc_m_dot, KC_PLUS),
-    [COMBO_9]  = COMBO(kc_m_comma_dot, KC_EQL),
-    [COMBO_10] = COMBO(kc_m_k, KC_BSLS),
-    [COMBO_11] = COMBO(kc_v_c, KC_GRAVE),
-    [COMBO_12] = COMBO(kc_c_x, KC_TILDE),
-    [COMBO_13] = COMBO(kc_f_d, OSM(MOD_LCTL)),
-    [COMBO_14] = COMBO(kc_f_s, OSM(MOD_LGUI)),
-    [COMBO_15] = COMBO(kc_f_a, OSM(MOD_LALT)),
-    [COMBO_16] = COMBO(kc_f_d_s, OSM(MOD_LCTL | MOD_LGUI)),
-    [COMBO_17] = COMBO(kc_f_d_a, OSM(MOD_LCTL | MOD_LALT)),
-    [COMBO_18] = COMBO(kc_f_s_a, OSM(MOD_LALT | MOD_LGUI)),
-    [COMBO_19] = COMBO(kc_f_d_s_a, OSM(MOD_LCTL | MOD_LALT | MOD_LGUI)),
-    [COMBO_20] = COMBO(kc_j_k, OSM(MOD_RCTL)),
-    [COMBO_21] = COMBO(kc_j_l, OSM(MOD_RGUI)),
-    [COMBO_22] = COMBO(kc_j_scln, OSM(MOD_LALT)),
-    [COMBO_23] = COMBO(kc_j_k_l, OSM(MOD_RCTL | MOD_RGUI)),
-    [COMBO_24] = COMBO(kc_j_k_scln, OSM(MOD_RCTL | MOD_LALT)),
-    [COMBO_25] = COMBO(kc_j_l_scln, OSM(MOD_LALT | MOD_RGUI)),
-    [COMBO_26] = COMBO(kc_j_k_l_scln, OSM(MOD_RCTL | MOD_LALT | MOD_RGUI)),
-    [COMBO_27] = COMBO(kc_q_w_e_r, SH_TG),
-    [COMBO_28] = COMBO(kc_u_i_o_p, SH_TG),
+  [COMBO_1] = COMBO(kc_q_p, QK_BOOT),
+  [COMBO_2] = COMBO(kc_q_w, QK_GESC),
+  [COMBO_3] = COMBO(kc_o_p, KC_BSPC),
+  [COMBO_4] = COMBO(kc_j_u, KC_COLON),
+  [COMBO_5] = COMBO(kc_k_i, KC_PIPE),
+  [COMBO_6] = COMBO(kc_m_comma, KC_MINS),
+  [COMBO_7] = COMBO(kc_comma_dot, KC_UNDS),
+  [COMBO_8] = COMBO(kc_m_dot, KC_PLUS),
+  [COMBO_9] = COMBO(kc_m_comma_dot, KC_EQL),
+  [COMBO_10] = COMBO(kc_m_k, KC_BSLS),
+  [COMBO_11] = COMBO(kc_v_c, KC_GRAVE),
+  [COMBO_12] = COMBO(kc_c_x, KC_TILDE),
+  [COMBO_13] = COMBO(kc_f_d, OSM(MOD_LCTL)),
+  [COMBO_14] = COMBO(kc_f_s, OSM(MOD_LGUI)),
+  [COMBO_15] = COMBO(kc_f_a, OSM(MOD_LALT)),
+  [COMBO_16] = COMBO(kc_f_d_s, OSM(MOD_LCTL|MOD_LGUI)),
+  [COMBO_17] = COMBO(kc_f_d_a, OSM(MOD_LCTL|MOD_LALT)),
+  [COMBO_18] = COMBO(kc_f_s_a, OSM(MOD_LALT|MOD_LGUI)),
+  [COMBO_19] = COMBO(kc_f_d_s_a, OSM(MOD_LCTL|MOD_LALT|MOD_LGUI)),
+  [COMBO_20] = COMBO(kc_j_k, OSM(MOD_RCTL)),
+  [COMBO_21] = COMBO(kc_j_l, OSM(MOD_RGUI)),
+  [COMBO_22] = COMBO(kc_j_scln, OSM(MOD_LALT)),
+  [COMBO_23] = COMBO(kc_j_k_l, OSM(MOD_RCTL|MOD_RGUI)),
+  [COMBO_24] = COMBO(kc_j_k_scln, OSM(MOD_RCTL|MOD_LALT)),
+  [COMBO_25] = COMBO(kc_j_l_scln, OSM(MOD_LALT|MOD_RGUI)),
+  [COMBO_26] = COMBO(kc_j_k_l_scln, OSM(MOD_RCTL|MOD_LALT|MOD_RGUI)),
+  [COMBO_27] = COMBO(kc_q_w_e_r, SH_TOGG),
+  [COMBO_28] = COMBO(kc_u_i_o_p, SH_TOGG),
 };
-// COMBO:END
-//         vim: foldmethod=marker
+//COMBO:END
+//          vim: foldmethod=marker
