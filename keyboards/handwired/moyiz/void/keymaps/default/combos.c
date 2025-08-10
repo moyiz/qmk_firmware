@@ -104,6 +104,6 @@ combo_t key_combos[COMBO_COUNT] = {
   [COMBO_23] = COMBO(kc_j_k_scln, OSM(MOD_LCTL|MOD_LALT)),
   [COMBO_24] = COMBO(kc_j_l_scln, OSM(MOD_LALT|MOD_RGUI)),
   [COMBO_25] = COMBO(kc_j_k_l_scln, OSM(MOD_LCTL|MOD_LALT|MOD_RGUI)),
-  [COMBO_26] = COMBO(kc_q_w_e_r, SH_TG),
-  [COMBO_27] = COMBO(kc_u_i_o_p, SH_TG),
+  [COMBO_26] = COMBO(kc_q_w_e_r, SH_TOGG),
+  [COMBO_27] = COMBO(kc_u_i_o_p, SH_TOGG),
 };
