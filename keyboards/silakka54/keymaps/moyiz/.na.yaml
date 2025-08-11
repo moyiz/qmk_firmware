@@ -1,0 +1,4 @@
+build: na r combos && qmk compile -kb silakka54 -km moyiz
+combos: ./combo.sh moyiz.combos > combos.c
+flash: na r combos && qmk flash -kb silakka54 -km moyiz
+lint: qmk lint -kb silaka54
